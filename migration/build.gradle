@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+java {
+    sourceCompatibility = java_version
+    targetCompatibility = java_version
+}
+compileKotlin {
+    kotlinOptions.jvmTarget = java_version
+}
+
+dependencies {
+    implementation project(":core")
+}
