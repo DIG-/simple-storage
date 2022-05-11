@@ -1,9 +1,9 @@
 package br.dev.dig.storage.serializer
 
-import br.dev.dig.storage.core.common.serializer.StorageSerializationBasic
+import br.dev.dig.storage.core.common.serializer.StorageSerializerBasic
 import com.google.gson.Gson
 
-class GsonSerializer(private val gson: Gson) : StorageSerializationBasic() {
+class StorageSerializerGson(private val gson: Gson) : StorageSerializerBasic() {
 
     constructor() : this(Gson())
 

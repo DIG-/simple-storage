@@ -10,7 +10,7 @@ import br.dev.dig.storage.core.builder.StorageBuilder
 import br.dev.dig.storage.core.common.encrypter.StorageEncryptionWithCipher
 import br.dev.dig.storage.core.common.encrypter.StorageSaltAppend
 import br.dev.dig.storage.core.common.hash.StorageKeyHashSHA256
-import br.dev.dig.storage.serializer.GsonSerializer
+import br.dev.dig.storage.serializer.StorageSerializerGson
 import br.dev.dig.storage.storage.android.sp.StorageAndroidSharedPreferences
 import javax.crypto.Cipher
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val crypto = StorageEncryptionWithCipher(Cipher.getInstance("AES/GCM/NoPadding"))
         builder.encryptor(crypto)
         builder.decryptor(crypto)
-        val serializer = GsonSerializer()
+        val serializer = StorageSerializerGson()
         builder.serializer(serializer)
         builder.deserializer(serializer)
         builder.salter(StorageSaltAppend("android"))

@@ -4,7 +4,7 @@ import br.dev.dig.storage.core.exception.DeserializeException
 import br.dev.dig.storage.core.operation.serializer.Deserialize
 import br.dev.dig.storage.core.operation.serializer.Serialize
 
-open class StorageSerializationBasic : Serialize, Deserialize {
+open class StorageSerializerBasic : Serialize, Deserialize {
 
     companion object {
         private const val SEPARATOR = ":"
