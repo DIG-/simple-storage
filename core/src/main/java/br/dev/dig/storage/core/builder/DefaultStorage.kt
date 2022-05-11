@@ -32,7 +32,7 @@ internal class DefaultStorage(
     override fun <T : Any> get(key: String, clazz: Class<T>): T {
         val encoded = storage.get(hash.hash(key))
         val decoded = decoder.decode(encoded)
-        val decrypted = decryptor.decrypt(decoded, getMasterPassword())
+        val decrypted = decryptor.decrypt(decoded, getPasswordForKey(key))
         return deserializer.deserialize(decrypted, clazz)
     }
 
@@ -52,7 +52,7 @@ internal class DefaultStorage(
 
     override fun <T : Any> put(key: String, item: T) {
         val serialized = serializer.serialize(item)
-        val encrypted = encryptor.encrypt(serialized, getMasterPassword())
+        val encrypted = encryptor.encrypt(serialized, getPasswordForKey(key))
         val encoded = encoder.encode(encrypted)
         storage.put(hash.hash(key), encoded)
     }
@@ -65,6 +65,10 @@ internal class DefaultStorage(
         storage.delete(hash.hash(key))
     }
 
+    private fun getPasswordForKey(key: String): String {
+        return hash.hash(salter.salt(getMasterPassword() + key))
+    }
+
     private fun getMasterPassword(): String {
         masterPassword?.let {
             return it
@@ -74,17 +78,15 @@ internal class DefaultStorage(
             val content = storage.get(key)
             val decoded = decoder.decode(content)
             val decrypt = decryptor.decrypt(decoded, salter.salt(masterKey))
-            val salted = salter.salt(decrypt)
-            masterPassword = salted
-            return salted
+            masterPassword = decrypt
+            return decrypt
         }
         val password = UUID.randomUUID().toString()
         val encrypt = encryptor.encrypt(password, salter.salt(masterKey))
         val encoded = encoder.encode(encrypt)
         storage.put(key, encoded)
-        val salted = salter.salt(password)
-        masterPassword = salted
-        return salted
+        masterPassword = password
+        return password
     }
 
 }
