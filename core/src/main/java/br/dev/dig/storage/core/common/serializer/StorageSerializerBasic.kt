@@ -7,7 +7,7 @@ import br.dev.dig.storage.core.operation.serializer.Serialize
 open class StorageSerializerBasic : Serialize, Deserialize {
 
     companion object {
-        private const val SEPARATOR = ":"
+        private const val SEPARATOR = ':'
     }
 
     override fun <T : Any> serialize(item: T): String = when (item) {
@@ -25,7 +25,7 @@ open class StorageSerializerBasic : Serialize, Deserialize {
 
     @Suppress("type_mismatch")
     override fun <T : Any> deserialize(item: String, clazz: Class<T>): T {
-        val split = item.split(':', limit = 2)
+        val split = item.split(SEPARATOR, limit = 2)
         if (split.size != 2) {
             throw DeserializeException("Error unwrapping item")
         }
