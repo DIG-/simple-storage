@@ -11,7 +11,17 @@ class StorageMigration(private val current: Storage, private vararg val others: 
         try {
             return current.get(key, clazz)
         } catch (_: Throwable) {
-
+            for (other in others) {
+                val found = try {
+                    other.get(key, clazz)
+                } catch (_: Throwable) {
+                    null
+                }
+                if (found != null) {
+                    put(key, found)
+                    return found
+                }
+            }
         }
         throw KeyNotFound()
     }
