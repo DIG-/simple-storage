@@ -7,11 +7,11 @@ plugins {
 apply from: "$rootDir/pom.gradle"
 
 android {
-    compileSdk 32
+    compileSdk android_version_target
 
     defaultConfig {
-        minSdk 21
-        targetSdk 32
+        minSdk android_version_min
+        targetSdk android_version_target
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

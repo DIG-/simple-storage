@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.java_version = JavaVersion.VERSION_1_8
+    ext.android_version_min = 21
+    ext.android_version_target = 32
     final Properties localProp = new Properties()
     def localPropFile = (new File(rootDir, "local.properties"))
     if (localPropFile.exists()) {

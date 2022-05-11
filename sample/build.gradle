@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk android_version_target
 
     defaultConfig {
         applicationId "br.dev.dig.storage.sample"
-        minSdk 21
-        targetSdk 32
+        minSdk android_version_min
+        targetSdk android_version_target
         versionCode 1
         versionName "1.0"
     }
