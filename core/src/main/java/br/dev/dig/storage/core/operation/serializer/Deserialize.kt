@@ -1,4 +1,4 @@
-package br.dev.dig.storage.core.operation.serialization
+package br.dev.dig.storage.core.operation.serializer
 
 import br.dev.dig.storage.core.exception.DeserializeException
 

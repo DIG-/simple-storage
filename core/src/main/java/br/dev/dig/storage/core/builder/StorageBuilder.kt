@@ -1,17 +1,17 @@
 package br.dev.dig.storage.core.builder
 
 import br.dev.dig.storage.core.Storage
-import br.dev.dig.storage.core.common.encodian.StorageEncoderHex
+import br.dev.dig.storage.core.common.encoder.StorageEncoderHex
 import br.dev.dig.storage.core.common.hash.StorageKeyHashSHA256
 import br.dev.dig.storage.core.operation.InternalStorage
 import br.dev.dig.storage.core.operation.KeyHash
-import br.dev.dig.storage.core.operation.encodian.Decode
-import br.dev.dig.storage.core.operation.encodian.Encode
-import br.dev.dig.storage.core.operation.encryption.Decrypt
-import br.dev.dig.storage.core.operation.encryption.Encrypt
-import br.dev.dig.storage.core.operation.encryption.Salt
-import br.dev.dig.storage.core.operation.serialization.Deserialize
-import br.dev.dig.storage.core.operation.serialization.Serialize
+import br.dev.dig.storage.core.operation.encoder.Decode
+import br.dev.dig.storage.core.operation.encoder.Encode
+import br.dev.dig.storage.core.operation.encrypter.Decrypt
+import br.dev.dig.storage.core.operation.encrypter.Encrypt
+import br.dev.dig.storage.core.operation.encrypter.Salt
+import br.dev.dig.storage.core.operation.serializer.Deserialize
+import br.dev.dig.storage.core.operation.serializer.Serialize
 import java.security.InvalidParameterException
 
 class StorageBuilder {

@@ -1,8 +1,8 @@
-package br.dev.dig.storage.core.common.serialization
+package br.dev.dig.storage.core.common.serializer
 
 import br.dev.dig.storage.core.exception.DeserializeException
-import br.dev.dig.storage.core.operation.serialization.Deserialize
-import br.dev.dig.storage.core.operation.serialization.Serialize
+import br.dev.dig.storage.core.operation.serializer.Deserialize
+import br.dev.dig.storage.core.operation.serializer.Serialize
 
 open class StorageSerializationBasic : Serialize, Deserialize {
 

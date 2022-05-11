@@ -1,6 +1,6 @@
 package br.dev.dig.storage.serializer
 
-import br.dev.dig.storage.core.common.serialization.StorageSerializationBasic
+import br.dev.dig.storage.core.common.serializer.StorageSerializationBasic
 import com.google.gson.Gson
 
 class GsonSerializer @JvmOverloads constructor(private val gson: Gson = Gson()) :

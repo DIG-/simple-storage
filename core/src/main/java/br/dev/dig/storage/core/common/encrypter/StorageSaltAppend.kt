@@ -1,6 +1,6 @@
-package br.dev.dig.storage.core.common.encryption
+package br.dev.dig.storage.core.common.encrypter
 
-import br.dev.dig.storage.core.operation.encryption.Salt
+import br.dev.dig.storage.core.operation.encrypter.Salt
 
 class StorageSaltAppend(private val prefix: String) : Salt {
 

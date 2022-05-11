@@ -1,7 +1,7 @@
-package br.dev.dig.storage.core.common.encodian
+package br.dev.dig.storage.core.common.encoder
 
-import br.dev.dig.storage.core.operation.encodian.Decode
-import br.dev.dig.storage.core.operation.encodian.Encode
+import br.dev.dig.storage.core.operation.encoder.Decode
+import br.dev.dig.storage.core.operation.encoder.Encode
 import java.util.*
 
 class StorageEncoderBase64 : Encode, Decode {

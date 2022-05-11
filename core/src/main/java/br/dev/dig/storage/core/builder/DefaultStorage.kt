@@ -5,13 +5,13 @@ import br.dev.dig.storage.core.exception.DeserializeException
 import br.dev.dig.storage.core.exception.KeyNotFound
 import br.dev.dig.storage.core.operation.InternalStorage
 import br.dev.dig.storage.core.operation.KeyHash
-import br.dev.dig.storage.core.operation.encodian.Decode
-import br.dev.dig.storage.core.operation.encodian.Encode
-import br.dev.dig.storage.core.operation.encryption.Decrypt
-import br.dev.dig.storage.core.operation.encryption.Encrypt
-import br.dev.dig.storage.core.operation.encryption.Salt
-import br.dev.dig.storage.core.operation.serialization.Deserialize
-import br.dev.dig.storage.core.operation.serialization.Serialize
+import br.dev.dig.storage.core.operation.encoder.Decode
+import br.dev.dig.storage.core.operation.encoder.Encode
+import br.dev.dig.storage.core.operation.encrypter.Decrypt
+import br.dev.dig.storage.core.operation.encrypter.Encrypt
+import br.dev.dig.storage.core.operation.encrypter.Salt
+import br.dev.dig.storage.core.operation.serializer.Deserialize
+import br.dev.dig.storage.core.operation.serializer.Serialize
 import java.util.*
 
 internal class DefaultStorage(

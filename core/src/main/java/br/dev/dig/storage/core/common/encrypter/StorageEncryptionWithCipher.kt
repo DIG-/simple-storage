@@ -1,7 +1,7 @@
-package br.dev.dig.storage.core.common.encryption
+package br.dev.dig.storage.core.common.encrypter
 
-import br.dev.dig.storage.core.operation.encryption.Decrypt
-import br.dev.dig.storage.core.operation.encryption.Encrypt
+import br.dev.dig.storage.core.operation.encrypter.Decrypt
+import br.dev.dig.storage.core.operation.encrypter.Encrypt
 import java.security.Key
 import java.security.SecureRandom
 import javax.crypto.Cipher

@@ -1,4 +1,4 @@
-package br.dev.dig.storage.core.operation.encryption
+package br.dev.dig.storage.core.operation.encrypter
 
 interface Encrypt {
     fun encrypt(content: String, password: String): ByteArray

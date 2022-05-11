@@ -1,7 +1,7 @@
 package br.dev.dig.storage.core.common.hash
 
 import br.dev.dig.storage.core.operation.KeyHash
-import br.dev.dig.storage.core.operation.encodian.Encode
+import br.dev.dig.storage.core.operation.encoder.Encode
 import java.security.MessageDigest
 
 class StorageKeyHashSHA256(private val encoder: Encode) : KeyHash {
