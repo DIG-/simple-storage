@@ -36,7 +36,14 @@ open class StorageEncryptionWithCipher(private val cipher: Cipher) : Encrypt, De
     }
 
     open fun parseKey(password: String): Key {
-        return SecretKeySpec(password.toByteArray(Charsets.UTF_8), "AES")
+        @Suppress("SpellCheckingInspection")
+        var temp = "${password}123456789ABCD"
+        temp = if (temp.length > 32) {
+            temp.substring(0, 32)
+        } else {
+            temp.substring(0, 16)
+        }
+        return SecretKeySpec(temp.toByteArray(Charsets.UTF_8), "AES")
     }
 
 }
