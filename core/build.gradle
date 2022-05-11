@@ -14,6 +14,9 @@ java {
 compileKotlin {
     kotlinOptions.jvmTarget = java_version
 }
+test {
+    useJUnitPlatform()
+}
 
 publishing {
     publications {
@@ -48,4 +51,8 @@ publishing {
             sign publishing.publications.core
         }
     }
+}
+
+dependencies {
+    testImplementation project(":test")
 }
