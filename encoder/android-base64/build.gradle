@@ -1,7 +1,10 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id "com.android.library"
+    id "maven-publish"
+    id "signing"
+    id "org.jetbrains.kotlin.android"
 }
+apply from: "$rootDir/pom.gradle"
 
 android {
     compileSdk 32
@@ -26,6 +29,48 @@ android {
     }
     kotlinOptions {
         jvmTarget = java_version
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            //noinspection GroovyAssignabilityCheck
+            encoderAndroidBase64(MavenPublication) {
+                //noinspection GroovyAssignabilityCheck
+                from components.release
+                groupId "br.dev.dig.storage"
+                version "0.1.0"
+                artifactId "encoder-android-base64"
+                pom { pom ->
+                    //noinspection GroovyAssignabilityCheck
+                    applyPom(pom, "Simple Storage - Encoder with Base64 for Android", "Use Android Base64 provider to encode/decode")
+                }
+            }
+        }
+        repositories {
+            if (deploy.central.enabled) {
+                maven {
+                    name = "Central"
+                    url = "https://s01.oss.sonatype.org/content/repositories/releases/"
+                    credentials {
+                        username = deploy.central.username
+                        password = deploy.central.password
+                    }
+                }
+            }
+        }
+        if (deploy.signing.enabled) {
+            signing {
+                useInMemoryPgpKeys((String) deploy.signing.key_id, (String) deploy.signing.secret, (String) deploy.signing.password)
+                sign publishing.publications.encoderAndroidBase64
+            }
+        }
     }
 }
 
