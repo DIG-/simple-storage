@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Simple Storage"
 include ":core"
 include ":sample"
+include ":serializer:gson"
