@@ -3,8 +3,9 @@ package br.dev.dig.storage.serializer
 import br.dev.dig.storage.core.common.serializer.StorageSerializationBasic
 import com.google.gson.Gson
 
-class GsonSerializer @JvmOverloads constructor(private val gson: Gson = Gson()) :
-    StorageSerializationBasic() {
+class GsonSerializer(private val gson: Gson) : StorageSerializationBasic() {
+
+    constructor() : this(Gson())
 
     override fun <T : Any> toJson(item: T): String {
         return gson.toJson(item)
