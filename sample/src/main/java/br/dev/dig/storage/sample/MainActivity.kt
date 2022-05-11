@@ -2,7 +2,7 @@ package br.dev.dig.storage.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import br.dev.dig.storage.R
+import br.dev.dig.storage.sample.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
