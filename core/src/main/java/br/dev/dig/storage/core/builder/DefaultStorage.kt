@@ -14,7 +14,7 @@ import br.dev.dig.storage.core.operation.serialization.Deserialize
 import br.dev.dig.storage.core.operation.serialization.Serialize
 import java.util.*
 
-class DefaultStorage(
+internal class DefaultStorage(
     private val storage: InternalStorage,
     private val encoder: Encode,
     private val decoder: Decode,
