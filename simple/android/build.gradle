@@ -1,0 +1,82 @@
+plugins {
+    id "com.android.library"
+    id "maven-publish"
+    id "signing"
+    id "org.jetbrains.kotlin.android"
+}
+apply from: "$rootDir/pom.gradle"
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility java_version
+        targetCompatibility java_version
+    }
+    kotlinOptions {
+        jvmTarget = java_version
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            //noinspection GroovyAssignabilityCheck
+            simpleAndroid(MavenPublication) {
+                //noinspection GroovyAssignabilityCheck
+                from components.release
+                groupId "br.dev.dig.storage"
+                version "0.1.0"
+                artifactId "simple-android"
+                pom { pom ->
+                    //noinspection GroovyAssignabilityCheck
+                    applyPom(pom, "Simple Storage - Android", "Reduced configuration for StorageBuilder")
+                }
+            }
+        }
+        repositories {
+            if (deploy.central.enabled) {
+                maven {
+                    name = "Central"
+                    url = "https://s01.oss.sonatype.org/content/repositories/releases/"
+                    credentials {
+                        username = deploy.central.username
+                        password = deploy.central.password
+                    }
+                }
+            }
+        }
+        if (deploy.signing.enabled) {
+            signing {
+                useInMemoryPgpKeys((String) deploy.signing.key_id, (String) deploy.signing.secret, (String) deploy.signing.password)
+                sign publishing.publications.simpleAndroid
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(":core")
+    implementation project(":storage:android-sharedpreferences")
+    implementation project(":serializer:gson")
+    implementation project(":encoder:android-base64")
+}
