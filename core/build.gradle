@@ -1,12 +1,51 @@
 plugins {
     id "java-library"
     id "org.jetbrains.kotlin.jvm"
+    id "maven-publish"
+    id "signing"
 }
+apply from: "$rootDir/pom.gradle"
 
 java {
+    withSourcesJar()
     sourceCompatibility = java_version
     targetCompatibility = java_version
 }
 compileKotlin {
     kotlinOptions.jvmTarget = java_version
+}
+
+publishing {
+    publications {
+        //noinspection GroovyAssignabilityCheck
+        core(MavenPublication) {
+            //noinspection GroovyAssignabilityCheck
+            from components.java
+            groupId "br.dev.dig.storage"
+            version "0.1.0"
+            artifactId "core"
+            pom { pom ->
+                //noinspection GroovyAssignabilityCheck
+                applyPom(pom, "Simple Storage", "Simple library for NoSQL wrapper with cryptography support")
+            }
+        }
+    }
+    repositories {
+        if (deploy.central.enabled) {
+            maven {
+                name = "Central"
+                url = "https://s01.oss.sonatype.org/content/repositories/releases/"
+                credentials {
+                    username = deploy.central.username
+                    password = deploy.central.password
+                }
+            }
+        }
+    }
+    if (deploy.signing.enabled) {
+        signing {
+            useInMemoryPgpKeys((String) deploy.signing.key_id, (String) deploy.signing.secret, (String) deploy.signing.password)
+            sign publishing.publications.core
+        }
+    }
 }
