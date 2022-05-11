@@ -7,3 +7,6 @@ java {
     sourceCompatibility = java_version
     targetCompatibility = java_version
 }
+compileKotlin {
+    kotlinOptions.jvmTarget = java_version
+}
