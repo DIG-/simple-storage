@@ -25,20 +25,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun createStorage(): Storage {
         val builder = StorageBuilder()
-        builder.masterKey = "123456"
+        builder.masterKey("123456")
         val encoder = StorageEncoderAndroidBase64()
-        builder.hash = StorageKeyHashSHA256(encoder)
-        builder.encoder = encoder
-        builder.decoder = encoder
+        builder.hash(StorageKeyHashSHA256(encoder))
+        builder.encoder(encoder)
+        builder.decoder(encoder)
         val crypto = StorageEncryptionWithCipher(Cipher.getInstance("AES/GCM/NoPadding"))
-        builder.encryptor = crypto
-        builder.decryptor = crypto
+        builder.encryptor(crypto)
+        builder.decryptor(crypto)
         val serializer = GsonSerializer()
-        builder.serializer = serializer
-        builder.deserializer = serializer
-        builder.salter = StorageSaltAppend("android")
-        builder.storage =
+        builder.serializer(serializer)
+        builder.deserializer(serializer)
+        builder.salter(StorageSaltAppend("android"))
+        builder.storage(
             StorageAndroidSharedPreferences(getSharedPreferences("local", Context.MODE_PRIVATE))
+        )
         return builder.build()
     }
 }
