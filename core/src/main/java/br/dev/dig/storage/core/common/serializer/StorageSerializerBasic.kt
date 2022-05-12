@@ -31,16 +31,36 @@ open class StorageSerializerBasic : Serialize, Deserialize {
         }
         val prefix = split[0]
         val value = split[1]
-        return if (prefix == "string" && clazz.isInstance(value)) {
-            value
-        } else if (prefix == "bool" && clazz == Boolean::class.java) {
-            value != "false"
-        } else if (prefix == "int" && clazz == Int::class.java) {
-            value.toInt()
-        } else if (prefix == "float" && clazz == Float::class.java) {
-            value.toFloat()
-        } else if (prefix == "double" && clazz == Double::class.java) {
-            value.toDouble()
+        return if (prefix == "string") {
+            if (clazz == String::class.java) {
+                value
+            } else {
+                throw DeserializeException("Trying to deserialize $prefix as ${clazz.simpleName}")
+            }
+        } else if (prefix == "bool") {
+            if (clazz == Boolean::class.java) {
+                value != "false"
+            } else {
+                throw DeserializeException("Trying to deserialize $prefix as ${clazz.simpleName}")
+            }
+        } else if (prefix == "int") {
+            if (clazz == Int::class.java) {
+                value.toInt()
+            } else {
+                throw DeserializeException("Trying to deserialize $prefix as ${clazz.simpleName}")
+            }
+        } else if (prefix == "float") {
+            if (clazz == Float::class.java) {
+                value.toFloat()
+            } else {
+                throw DeserializeException("Trying to deserialize $prefix as ${clazz.simpleName}")
+            }
+        } else if (prefix == "double") {
+            if (clazz == Double::class.java) {
+                value.toDouble()
+            } else {
+                throw DeserializeException("Trying to deserialize $prefix as ${clazz.simpleName}")
+            }
         } else if (prefix == "json") {
             fromJson(value, clazz)
         } else {
