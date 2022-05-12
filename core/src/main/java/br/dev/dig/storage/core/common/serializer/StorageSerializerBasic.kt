@@ -39,7 +39,7 @@ open class StorageSerializerBasic : Serialize, Deserialize {
             value.toInt()
         } else if (prefix == "float" && clazz == Float::class.java) {
             value.toFloat()
-        } else if (prefix == "double" && clazz == Float::class.java) {
+        } else if (prefix == "double" && clazz == Double::class.java) {
             value.toDouble()
         } else if (prefix == "json") {
             fromJson(value, clazz)
