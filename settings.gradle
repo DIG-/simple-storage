@@ -13,11 +13,14 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Simple Storage"
+def isAndroidEnabled = !(new File(rootDir, "disable-android.gradle")).exists()
 include ":core"
-include ":sample"
+if (isAndroidEnabled) {
+    include ":sample"
+    include ":encoder:android-base64"
+    include ":storage:android-sharedpreferences"
+    include ":simple:android"
+}
 include ":serializer:gson"
-include ":encoder:android-base64"
-include ":storage:android-sharedpreferences"
 include ":migration"
-include ":simple:android"
 include ":test"
