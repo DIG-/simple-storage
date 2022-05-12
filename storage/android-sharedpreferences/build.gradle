@@ -45,7 +45,7 @@ afterEvaluate {
                 //noinspection GroovyAssignabilityCheck
                 from components.release
                 groupId "br.dev.dig.storage"
-                version "0.1.0"
+                version "1.0.0"
                 artifactId "storage-android-sharedpreferences"
                 pom { pom ->
                     //noinspection GroovyAssignabilityCheck
