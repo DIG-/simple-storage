@@ -20,21 +20,21 @@ import java.security.InvalidParameterException
 class StorageBuilder {
     var storage: InternalStorage? = null
         private set
-    var encoder: Encode? = null
+    var encoder: Encode
         private set
-    var decoder: Decode? = null
+    var decoder: Decode
         private set
-    var encryptor: Encrypt? = null
+    var encryptor: Encrypt
         private set
-    var decryptor: Decrypt? = null
+    var decryptor: Decrypt
         private set
-    var salter: Salt? = null
+    var salter: Salt
         private set
-    var serializer: Serialize? = null
+    var serializer: Serialize
         private set
-    var deserializer: Deserialize? = null
+    var deserializer: Deserialize
         private set
-    var hash: KeyHash? = null
+    var hash: KeyHash
         private set
     var masterKey: String? = null
         private set
@@ -49,7 +49,7 @@ class StorageBuilder {
         salter = StorageSaltNone()
         val serializer = StorageSerializerBasic()
         this.serializer = serializer
-        this.deserializer = deserializer
+        this.deserializer = serializer
         hash = StorageKeyHashDisabled()
     }
 
@@ -67,14 +67,14 @@ class StorageBuilder {
     @Suppress("SpellCheckingInspection")
     fun build(): Storage = DefaultStorage(
         storage ?: throw InvalidParameterException("Requires non null internal storage"),
-        encoder ?: throw InvalidParameterException("Requires non null encoder"),
-        decoder ?: throw InvalidParameterException("Requires non null decoder"),
-        encryptor ?: throw InvalidParameterException("Requires non null encryptor"),
-        decryptor ?: throw InvalidParameterException("Requires non null decryptor"),
-        salter ?: throw InvalidParameterException("Requires non null salter"),
-        serializer ?: throw InvalidParameterException("Requires non null serializer"),
-        deserializer ?: throw InvalidParameterException("Requires non null deserializer"),
-        hash ?: throw InvalidParameterException("Requires non null hash"),
+        encoder,
+        decoder,
+        encryptor,
+        decryptor,
+        salter,
+        serializer,
+        deserializer,
+        hash,
         masterKey ?: throw InvalidParameterException("Requires constant master key")
     )
 
