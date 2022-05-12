@@ -5,6 +5,7 @@ Changelog
 - First production version
 - Added Hawk interface to Storage
 - Refactor of StorageEncryptionWithCipher
+- Added default config for StorageBuilder (no protection)
 
 0.1.0
 -----
