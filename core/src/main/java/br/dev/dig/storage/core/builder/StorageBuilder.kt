@@ -2,7 +2,10 @@ package br.dev.dig.storage.core.builder
 
 import br.dev.dig.storage.core.Storage
 import br.dev.dig.storage.core.common.encoder.StorageEncoderHex
-import br.dev.dig.storage.core.common.hash.StorageKeyHashSHA256
+import br.dev.dig.storage.core.common.encrypter.StorageEncryptionDisabled
+import br.dev.dig.storage.core.common.encrypter.StorageSaltNone
+import br.dev.dig.storage.core.common.hash.StorageKeyHashDisabled
+import br.dev.dig.storage.core.common.serializer.StorageSerializerBasic
 import br.dev.dig.storage.core.operation.InternalStorage
 import br.dev.dig.storage.core.operation.KeyHash
 import br.dev.dig.storage.core.operation.encoder.Decode
@@ -40,7 +43,14 @@ class StorageBuilder {
         val hex = StorageEncoderHex()
         encoder = hex
         decoder = hex
-        hash = StorageKeyHashSHA256(hex)
+        val crypto = StorageEncryptionDisabled()
+        encryptor = crypto
+        decryptor = crypto
+        salter = StorageSaltNone()
+        val serializer = StorageSerializerBasic()
+        this.serializer = serializer
+        this.deserializer = deserializer
+        hash = StorageKeyHashDisabled()
     }
 
     fun storage(storage: InternalStorage) = apply { this.storage = storage }
