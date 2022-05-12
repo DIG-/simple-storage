@@ -86,21 +86,21 @@ class StoragePrimitiveWrapper(private val storage: Storage) : Storage() {
     }
 
     /* ================
-       Byte methods
+       Boolean methods
     */
-    fun getByte(key: String): Byte {
-        return get(key, Byte::class.java)
+    fun getBoolean(key: String): Boolean {
+        return get(key, Boolean::class.java)
     }
 
-    fun getByteOrNull(key: String): Byte? {
-        return getOrNull(key, Byte::class.java)
+    fun getBooleanOrNull(key: String): Boolean? {
+        return getOrNull(key, Boolean::class.java)
     }
 
-    fun getByteOrDefault(key: String, default: () -> Byte): Byte {
-        return getOrDefault(key, Byte::class.java, default)
+    fun getBooleanOrDefault(key: String, default: () -> Boolean): Boolean {
+        return getOrDefault(key, Boolean::class.java, default)
     }
 
-    fun putByte(key: String, value: Byte) {
+    fun putBoolean(key: String, value: Boolean) {
         put(key, value)
     }
 }
