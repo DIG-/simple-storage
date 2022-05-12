@@ -18,6 +18,7 @@ include ":core"
 if (isAndroidEnabled) {
     include ":sample"
     include ":encoder:android-base64"
+    include ":migration:hawk"
     include ":storage:android-sharedpreferences"
     include ":simple:android"
 }
