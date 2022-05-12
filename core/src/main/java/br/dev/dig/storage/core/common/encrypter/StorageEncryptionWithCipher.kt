@@ -4,21 +4,23 @@ import br.dev.dig.storage.core.operation.encrypter.Decrypt
 import br.dev.dig.storage.core.operation.encrypter.Encrypt
 import java.security.Key
 import java.security.SecureRandom
+import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.Cipher
-import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-open class StorageEncryptionWithCipher(private val cipher: Cipher) : Encrypt, Decrypt {
+abstract class StorageEncryptionWithCipher : Encrypt, Decrypt {
 
-    companion object {
-        private const val IV_SIZE = 16
-    }
+    @Suppress("LeakingThis")
+    private val cipher: Cipher = createCipher()
+
+    @Suppress("PropertyName")
+    protected abstract val IV_SIZE: Int
 
     override fun encrypt(content: String, password: String): ByteArray {
         val iv = ByteArray(IV_SIZE)
         SecureRandom().nextBytes(iv)
         val encrypted = synchronized(cipher) {
-            cipher.init(Cipher.ENCRYPT_MODE, parseKey(password), IvParameterSpec(iv))
+            cipher.init(Cipher.ENCRYPT_MODE, parseKey(password), createParameterSpec(iv, 0))
             cipher.doFinal(content.toByteArray(Charsets.UTF_8))
         }
         return iv.plus(encrypted)
@@ -29,7 +31,7 @@ open class StorageEncryptionWithCipher(private val cipher: Cipher) : Encrypt, De
             cipher.init(
                 Cipher.DECRYPT_MODE,
                 parseKey(password),
-                IvParameterSpec(content, 0, IV_SIZE)
+                createParameterSpec(content, 0)
             )
             cipher.doFinal(content, IV_SIZE, content.size - IV_SIZE).toString(Charsets.UTF_8)
         }
@@ -45,5 +47,9 @@ open class StorageEncryptionWithCipher(private val cipher: Cipher) : Encrypt, De
         }
         return SecretKeySpec(temp.toByteArray(Charsets.UTF_8), "AES")
     }
+
+    abstract fun createCipher(): Cipher
+
+    abstract fun createParameterSpec(iv: ByteArray, offset: Int): AlgorithmParameterSpec
 
 }
