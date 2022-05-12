@@ -6,17 +6,10 @@ import br.dev.dig.storage.core.Storage
 import br.dev.dig.storage.core.builder.StorageBuilder
 import br.dev.dig.storage.core.common.encrypter.StorageEncryptionWithCipher
 import br.dev.dig.storage.core.common.hash.StorageKeyHashSHA256
-import br.dev.dig.storage.core.operation.encrypter.Salt
 import br.dev.dig.storage.serializer.StorageSerializerGson
 import br.dev.dig.storage.storage.android.sp.StorageAndroidSharedPreferences
 
 class StorageSimpleAndroidBuilder {
-
-    private class NoSalt : Salt {
-        override fun salt(password: String): String {
-            return password
-        }
-    }
 
     @Suppress("MemberVisibilityCanBePrivate")
     val builder: StorageBuilder = StorageBuilder()
@@ -28,7 +21,6 @@ class StorageSimpleAndroidBuilder {
         builder.encoder(encoder).decoder(encoder).hash(StorageKeyHashSHA256(encoder))
         val crypto = StorageEncryptionWithCipher.AES_GCM_NoPadding()
         builder.encryptor(crypto).decryptor(crypto)
-        builder.salter(NoSalt())
     }
 
     fun preferences(preferences: SharedPreferences) =
