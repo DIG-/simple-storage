@@ -6,6 +6,7 @@ import java.security.Key
 import java.security.SecureRandom
 import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.Cipher
+import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 abstract class StorageEncryptionWithCipher : Encrypt, Decrypt {
@@ -51,5 +52,19 @@ abstract class StorageEncryptionWithCipher : Encrypt, Decrypt {
     abstract fun createCipher(): Cipher
 
     abstract fun createParameterSpec(iv: ByteArray, offset: Int): AlgorithmParameterSpec
+
+    @Suppress("ClassName")
+    class AES_GCM_NoPadding : StorageEncryptionWithCipher() {
+        override val IV_SIZE: Int
+            get() = 16
+
+        override fun createCipher(): Cipher {
+            return Cipher.getInstance("AES/GCM/NoPadding")
+        }
+
+        override fun createParameterSpec(iv: ByteArray, offset: Int): AlgorithmParameterSpec {
+            return GCMParameterSpec(128, iv, offset, IV_SIZE)
+        }
+    }
 
 }

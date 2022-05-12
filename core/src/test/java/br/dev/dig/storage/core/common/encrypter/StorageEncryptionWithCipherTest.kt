@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test
 import java.security.spec.AlgorithmParameterSpec
 import java.util.*
 import javax.crypto.Cipher
-import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.IvParameterSpec
 
 internal class StorageEncryptionWithCipherTest {
@@ -45,18 +44,7 @@ internal class StorageEncryptionWithCipherTest {
 
     @Test
     fun validate_AES_GCM_NoPadding() {
-        validate(object : StorageEncryptionWithCipher() {
-            override val IV_SIZE: Int
-                get() = 16
-
-            override fun createCipher(): Cipher {
-                return Cipher.getInstance("AES/GCM/NoPadding")
-            }
-
-            override fun createParameterSpec(iv: ByteArray, offset: Int): AlgorithmParameterSpec {
-                return GCMParameterSpec(128, iv, offset, IV_SIZE)
-            }
-        })
+        validate(StorageEncryptionWithCipher.AES_GCM_NoPadding())
     }
 
     private fun validate(crypto: StorageEncryptionWithCipher) {
