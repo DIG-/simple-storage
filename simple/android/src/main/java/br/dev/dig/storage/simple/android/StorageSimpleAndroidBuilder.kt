@@ -9,7 +9,6 @@ import br.dev.dig.storage.core.common.hash.StorageKeyHashSHA256
 import br.dev.dig.storage.core.operation.encrypter.Salt
 import br.dev.dig.storage.serializer.StorageSerializerGson
 import br.dev.dig.storage.storage.android.sp.StorageAndroidSharedPreferences
-import javax.crypto.Cipher
 
 class StorageSimpleAndroidBuilder {
 
@@ -27,7 +26,7 @@ class StorageSimpleAndroidBuilder {
         builder.serializer(serializer).deserializer(serializer)
         val encoder = StorageEncoderAndroidBase64()
         builder.encoder(encoder).decoder(encoder).hash(StorageKeyHashSHA256(encoder))
-        val crypto = StorageEncryptionWithCipher(Cipher.getInstance("AES/GCM/NoPadding"))
+        val crypto = StorageEncryptionWithCipher.AES_GCM_NoPadding()
         builder.encryptor(crypto).decryptor(crypto)
         builder.salter(NoSalt())
     }
