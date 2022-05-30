@@ -25,7 +25,7 @@ publishing {
             //noinspection GroovyAssignabilityCheck
             from components.java
             groupId "br.dev.dig.storage"
-            version "1.0.0"
+            version "1.0.1"
             artifactId "core"
             pom { pom ->
                 //noinspection GroovyAssignabilityCheck
