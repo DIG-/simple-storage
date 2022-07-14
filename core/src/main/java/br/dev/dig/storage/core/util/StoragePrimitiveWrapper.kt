@@ -28,6 +28,10 @@ class StoragePrimitiveWrapper(private val storage: Storage) : Storage() {
         return storage.delete(key)
     }
 
+    override fun flush() {
+        return storage.flush()
+    }
+
     /* ================
        String methods
     */

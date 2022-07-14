@@ -8,4 +8,5 @@ interface InternalStorage {
     fun put(key: String, value: String)
     fun contains(key: String): Boolean
     fun delete(key: String)
+    fun flush()
 }

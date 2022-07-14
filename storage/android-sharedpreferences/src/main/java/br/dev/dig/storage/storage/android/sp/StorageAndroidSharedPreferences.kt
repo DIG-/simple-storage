@@ -1,5 +1,6 @@
 package br.dev.dig.storage.storage.android.sp
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import br.dev.dig.storage.core.exception.KeyNotFound
 import br.dev.dig.storage.core.operation.InternalStorage
@@ -20,6 +21,11 @@ class StorageAndroidSharedPreferences(private val sp: SharedPreferences) : Inter
 
     override fun delete(key: String) {
         sp.edit().remove(key).apply()
+    }
+
+    @SuppressLint("ApplySharedPref")
+    override fun flush() {
+        sp.edit().commit()
     }
 
 }

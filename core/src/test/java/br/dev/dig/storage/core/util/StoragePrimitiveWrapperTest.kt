@@ -57,6 +57,9 @@ internal class StoragePrimitiveWrapperTest {
 
         override fun delete(key: String) {
         }
+
+        override fun flush() {
+        }
     }
 
     lateinit var parent: Storage

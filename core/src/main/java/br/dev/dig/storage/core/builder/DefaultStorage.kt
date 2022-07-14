@@ -65,6 +65,10 @@ internal class DefaultStorage(
         storage.delete(hash.hash(key))
     }
 
+    override fun flush() {
+        storage.flush()
+    }
+
     private fun getPasswordForKey(key: String): String {
         return hash.hash(salter.salt(getMasterPassword() + key))
     }

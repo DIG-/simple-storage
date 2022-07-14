@@ -38,4 +38,8 @@ class HawkStorage : Storage() {
         Hawk.delete(key)
     }
 
+    override fun flush() {
+        // Nothing to do
+    }
+
 }

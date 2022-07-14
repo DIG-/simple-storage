@@ -13,4 +13,5 @@ abstract class Storage {
     abstract fun <T : Any> put(key: String, item: T)
     abstract fun contains(key: String): Boolean
     abstract fun delete(key: String)
+    abstract fun flush()
 }

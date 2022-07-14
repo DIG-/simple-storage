@@ -55,4 +55,9 @@ class StorageMigration(private val current: Storage, private vararg val others: 
         others.forEach { it.delete(key) }
     }
 
+    override fun flush() {
+        current.flush()
+        others.forEach { it.flush() }
+    }
+
 }
