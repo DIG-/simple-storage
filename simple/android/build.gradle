@@ -84,6 +84,6 @@ afterEvaluate {
 dependencies {
     api project(":core")
     implementation project(":storage:android-sharedpreferences")
-    implementation project(":serializer:gson")
+    api project(":serializer:gson")
     implementation project(":encoder:android-base64")
 }

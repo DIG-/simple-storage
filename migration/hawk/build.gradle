@@ -83,5 +83,5 @@ afterEvaluate {
 
 dependencies {
     api project(":core")
-    implementation "com.orhanobut:hawk:2.0.1"
+    api "com.orhanobut:hawk:2.0.1"
 }
