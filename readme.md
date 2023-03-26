@@ -25,9 +25,8 @@ As an Android developer, **Hawk** is outdated and contains external outdated lib
 How to use - Simple
 ===================
 1. Include maven central as repository
-2. Choose, at least, one logger printer (`br.dev.dig.logger.printer`) and import into your project.
 
-Simple log for Android:
+2. Simple storage for Android:
 ```groovy
 dependencies {
     ⋮
