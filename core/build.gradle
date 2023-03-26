@@ -6,6 +6,12 @@ plugins {
 }
 apply from: "$rootDir/pom.gradle"
 
+// ==================================
+// Patch
+def patch = 0
+// ==================================
+
+def vName = versions.storage.pkg + patch
 java {
     withSourcesJar()
     sourceCompatibility = versions.java
@@ -25,7 +31,7 @@ publishing {
             //noinspection GroovyAssignabilityCheck
             from components.java
             groupId "br.dev.dig.storage"
-            version "1.1.0"
+            version vName
             artifactId "core"
             pom { pom ->
                 //noinspection GroovyAssignabilityCheck

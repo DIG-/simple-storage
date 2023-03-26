@@ -6,6 +6,12 @@ plugins {
 }
 apply from: "$rootDir/pom.gradle"
 
+// ==================================
+// Patch
+def patch = 0
+// ==================================
+
+def vName = versions.storage.pkg + patch
 android {
     namespace "br.dev.dig.storage.storage.android.sp"
     compileSdk versions.android.target
@@ -46,7 +52,7 @@ afterEvaluate {
                 //noinspection GroovyAssignabilityCheck
                 from components.release
                 groupId "br.dev.dig.storage"
-                version "1.1.0"
+                version vName
                 artifactId "storage-android-sharedpreferences"
                 pom { pom ->
                     //noinspection GroovyAssignabilityCheck
