@@ -1,5 +1,15 @@
 Changelog
 =========
+1.2.0
+-----
+- Update kotlin to 1.8.10
+- Update Android target to 33
+- Update dependencies transitivity
+
+1.1.0
+-----
+- Added method `Storage.flush()`
+
 1.0.1
 -----
 - Fix error deserialize java primitive
