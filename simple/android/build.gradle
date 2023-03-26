@@ -6,12 +6,19 @@ plugins {
 }
 apply from: "$rootDir/pom.gradle"
 
+// ==================================
+// Patch
+def patch = 0
+// ==================================
+
+def vName = versions.storage.pkg + patch
 android {
-    compileSdk android_version_target
+    namespace "br.dev.dig.storage.simple.android"
+    compileSdk versions.android.target
 
     defaultConfig {
-        minSdk android_version_min
-        targetSdk android_version_target
+        minSdk versions.android.minimun
+        targetSdk versions.android.target
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -24,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility java_version
-        targetCompatibility java_version
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
     }
     kotlinOptions {
-        jvmTarget = java_version
+        jvmTarget = versions.java
     }
     publishing {
         singleVariant("release") {
@@ -45,7 +52,7 @@ afterEvaluate {
                 //noinspection GroovyAssignabilityCheck
                 from components.release
                 groupId "br.dev.dig.storage"
-                version "1.1.0"
+                version vName
                 artifactId "simple-android"
                 pom { pom ->
                     //noinspection GroovyAssignabilityCheck
@@ -77,6 +84,6 @@ afterEvaluate {
 dependencies {
     api project(":core")
     implementation project(":storage:android-sharedpreferences")
-    implementation project(":serializer:gson")
+    api project(":serializer:gson")
     implementation project(":encoder:android-base64")
 }

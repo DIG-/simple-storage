@@ -2,7 +2,7 @@ Simple Storage for Java and Android
 ==================================
 [![AppVeyor](https://img.shields.io/appveyor/build/DIG-/simple-storage/main?logo=appveyor&logoColor=dddddd)](https://ci.appveyor.com/project/DIG-/simple-storage/branch/main)
 [![AppVeyor tests](https://img.shields.io/appveyor/tests/DIG-/simple-storage/main?logo=appveyor&logoColor=dddddd)](https://ci.appveyor.com/project/DIG-/simple-storage/branch/main)
-[![Maven Central](https://img.shields.io/maven-central/v/br.dev.dig.storage/core?label=maven)](https://search.maven.org/search?q=g:br.dev.dig.storage*)
+[![Maven Central](https://img.shields.io/maven-central/v/br.dev.dig.storage/core?label=maven)](https://central.sonatype.com/search?q=br.dev.dig.storage)
 [![License](https://img.shields.io/static/v1?label=license&message=CC%20BY-ND%204.0&color=blue)](https://creativecommons.org/licenses/by-nd/4.0/)
 
 ![Windows - Supported](https://img.shields.io/badge/windows-supported-success?logo=windows&logoColor=dddddd)
@@ -25,9 +25,8 @@ As an Android developer, **Hawk** is outdated and contains external outdated lib
 How to use - Simple
 ===================
 1. Include maven central as repository
-2. Choose, at least, one logger printer (`br.dev.dig.logger.printer`) and import into your project.
 
-Simple log for Android:
+2. Simple storage for Android:
 ```groovy
 dependencies {
     ⋮

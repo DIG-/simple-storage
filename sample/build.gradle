@@ -4,12 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk android_version_target
+    namespace "br.dev.dig.storage.sample"
+    compileSdk versions.android.target
 
     defaultConfig {
         applicationId "br.dev.dig.storage.sample"
-        minSdk android_version_min
-        targetSdk android_version_target
+        minSdk versions.android.minimun
+        targetSdk versions.android.target
         versionCode 1
         versionName "1.0"
     }
@@ -21,11 +22,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility java_version
-        targetCompatibility java_version
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
     }
     kotlinOptions {
-        jvmTarget = java_version
+        jvmTarget = versions.java
     }
 }
 
