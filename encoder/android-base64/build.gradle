@@ -7,11 +7,12 @@ plugins {
 apply from: "$rootDir/pom.gradle"
 
 android {
-    compileSdk android_version_target
+    namespace "br.dev.dig.encoder.android.base64"
+    compileSdk versions.android.target
 
     defaultConfig {
-        minSdk android_version_min
-        targetSdk android_version_target
+        minSdk versions.android.minimun
+        targetSdk versions.android.target
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -24,11 +25,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility java_version
-        targetCompatibility java_version
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
     }
     kotlinOptions {
-        jvmTarget = java_version
+        jvmTarget = versions.java
     }
     publishing {
         singleVariant("release") {

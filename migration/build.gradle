@@ -8,11 +8,11 @@ apply from: "$rootDir/pom.gradle"
 
 java {
     withSourcesJar()
-    sourceCompatibility = java_version
-    targetCompatibility = java_version
+    sourceCompatibility = versions.java
+    targetCompatibility = versions.java
 }
 compileKotlin {
-    kotlinOptions.jvmTarget = java_version
+    kotlinOptions.jvmTarget = versions.java
 }
 
 publishing {
